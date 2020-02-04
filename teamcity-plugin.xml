@@ -6,7 +6,7 @@
     <version>@Version@</version>
     <description>The plug-in adds ability to authenticate users by SAML-based SSO providers (like Okta, Onelogin etc.)</description>
     <download-url>https://github.com/morincer/teamcity-plugin-saml</download-url>
-    <email>morincer@gmail.com</email>
+    <email>dsielert@esolutionsinc.com</email>
     <vendor>
       <name>@VendorName@</name>
       <url>@VendorURL@</url>

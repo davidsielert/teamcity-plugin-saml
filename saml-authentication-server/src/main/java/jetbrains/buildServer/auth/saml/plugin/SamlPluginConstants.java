@@ -11,7 +11,6 @@ public interface SamlPluginConstants {
     String SETTINGS_CONTROLLER_PATH = "/admin/samlSettings.html";
     String AUTH_SCHEME_NAME = "SAML.v2";
     String AUTH_SCHEME_DESCRIPTION = "Provides SAML assertions-based authentication";
-
     AuthPropertyKey ID_USER_PROPERTY_KEY = new AuthPropertyKey("HTTP", "teamcity-saml-id", "SAML ID");
 
     String SAML_RESPONSE_REQUEST_PARAMETER = "SAMLResponse";

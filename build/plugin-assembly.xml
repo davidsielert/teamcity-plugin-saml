@@ -9,19 +9,22 @@
      <file>
          <source>target/teamcity-plugin.xml</source>
          <outputDirectory>/</outputDirectory>
-     </file> 
+     </file>
   </files>
   <moduleSets>
     <moduleSet>
        <useAllReactorProjects>true</useAllReactorProjects>
        <includes>
            <include>org.gromozeka.teamcity:saml-authentication-server</include>
-       </includes> 
+       </includes>
        <binaries>
            <outputDirectory>server</outputDirectory>
            <unpack>false</unpack>
            <dependencySets>
                <dependencySet>
+<!--                   <excludes>-->
+<!--                   <exclude>org.opensaml</exclude>-->
+<!--                   </excludes>-->
                     <includes>
                          <include>*</include>
                     </includes>

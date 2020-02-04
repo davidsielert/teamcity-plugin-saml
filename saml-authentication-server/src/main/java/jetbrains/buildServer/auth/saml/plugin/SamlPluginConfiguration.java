@@ -11,10 +11,14 @@ import jetbrains.buildServer.web.openapi.PluginDescriptor;
 import jetbrains.buildServer.web.openapi.WebControllerManager;
 import lombok.var;
 import org.jetbrains.annotations.NotNull;
+import org.opensaml.core.config.InitializationException;
+import org.opensaml.core.config.InitializationService;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Configuration
@@ -35,13 +39,13 @@ public class SamlPluginConfiguration {
     }
 
     @Bean
-    SamlLoginController samlLoginController(SBuildServer server, WebControllerManager webControllerManager, AuthorizationInterceptor interceptor, SamlPluginSettingsStorage settingsStorage) {
-        return new SamlLoginController(server, webControllerManager, interceptor, settingsStorage);
+    SamlLoginController samlLoginController(SBuildServer server, WebControllerManager webControllerManager, AuthorizationInterceptor interceptor, SamlPluginSettingsStorage settingsStorage,RootUrlHolder rootUrlHolder) {
+        return new SamlLoginController(server, webControllerManager, interceptor, settingsStorage,rootUrlHolder);
     }
 
     @Bean
     SamlCallbackController samlCallbackController(SBuildServer server, WebControllerManager webControllerManager, AuthorizationInterceptor interceptor) {
-        return new SamlCallbackController(server, webControllerManager);
+        return new SamlCallbackController(server, webControllerManager,interceptor);
     }
 
     @Bean
@@ -51,8 +55,8 @@ public class SamlPluginConfiguration {
 
     @Bean
     SamlPluginSettingsStorage samlPluginSettingsStorage(ServerPaths serverPaths) throws IOException {
-        var configPath = Paths.get(serverPaths.getConfigDir(), SamlPluginConstants.CONFIG_FILE_NAME);
-        var samlPluginSettingsStorage = new SamlPluginSettingsStorageImpl(configPath);
+        Path configPath =   Paths.get(serverPaths.getConfigDir(), SamlPluginConstants.CONFIG_FILE_NAME);
+        SamlPluginSettingsStorageImpl samlPluginSettingsStorage = new SamlPluginSettingsStorageImpl(configPath);
         samlPluginSettingsStorage.init();
         return samlPluginSettingsStorage;
     }
@@ -61,4 +65,5 @@ public class SamlPluginConfiguration {
     SamlSettingsJsonController samlSettingsAjaxController(WebControllerManager controllerManager, RootUrlHolder rootUrlHolder) throws IOException {
         return new SamlSettingsJsonController(samlPluginSettingsStorage(null), controllerManager, rootUrlHolder);
     }
+
 }

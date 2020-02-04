@@ -60,8 +60,10 @@ public class SamlAuthenticationScheme extends HttpAuthenticationSchemeAdapter {
     @NotNull
     @Override
     public HttpAuthenticationResult processAuthenticationRequest(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Map<String, String> properties) throws IOException {
+        LOG.info("checking for auth");
         var saml = request.getParameter(SamlPluginConstants.SAML_RESPONSE_REQUEST_PARAMETER);
         if (StringUtil.isEmpty(saml)) {
+            LOG.info("param is empty");
             return HttpAuthenticationResult.notApplicable();
         }
         try {

@@ -6,7 +6,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-      <teamcity-version>2018.2</teamcity-version>
+      <teamcity-version>2019.2</teamcity-version>
   </properties>
   <repositories>
     <repository>
@@ -27,6 +27,7 @@
               <artifactId>teamcity-sdk-maven-plugin</artifactId>
               <version>0.4</version>
               <configuration>
+                  <teamcitySourceURL>https://download-cf.jetbrains.com/teamcity</teamcitySourceURL>
                   <teamcityDir>servers/${teamcity-version}</teamcityDir>
               </configuration>
           </plugin>
@@ -38,6 +39,7 @@
                   <artifactId>teamcity-sdk-maven-plugin</artifactId>
                   <version>0.4</version>
                   <configuration>
+                      <teamcitySourceURL>https://download-cf.jetbrains.com/teamcity</teamcitySourceURL>
                       <!-- <teamcityDir>/path/to/tc/distro</teamcityDir> -->
                   </configuration>
               </plugin>
@@ -45,6 +47,7 @@
       </pluginManagement>
   </build>
   <modules>
+<!--      <module>saml-utils</module>-->
     <module>saml-authentication-server</module>
     <module>build</module>
   </modules>
